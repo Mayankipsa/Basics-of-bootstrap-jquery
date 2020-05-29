@@ -1,0 +1,14 @@
+.border{border: 1px solid black;}
+.row{ margin: 5px ;padding:20px 20px; align-content: center;}
+.column{width:30%; margin:0px 5px ; padding: 8px;}
+.floatLeft{float:left;}
+.floatRight{float:right;}
+.clearBoth{clear:both;}
+.container{}
+
+.red{ background-color: red;}
+.green{background-color: green;}
+.blue{background-color: blue;}
+
+.grey{background-color:grey;}
+.yellow{background-color: yellow;}
