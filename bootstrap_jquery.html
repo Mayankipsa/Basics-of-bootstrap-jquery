@@ -8,15 +8,48 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 
 
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var count = 0
+            var odd = 1
+            var oldclass = ''
+            var prev_thiss = ''
+
+            $("div").click(function(event) {
+
+                event.stopPropagation();
+                class_one = this.className
+                var res = class_one.split(" ");
+                class_one1 = (res[(res.length - 1)]);
+                var id1 = $(this).attr('id');
+                // alert(id1);
+                count = count + 1;
+
+                if (odd == count % 2) {
+                    oldclass = class_one1
+                    prev_this = this
+
+                } else {
+
+                    $(prev_this).removeClass(oldclass).addClass(class_one1);
+                    $(this).removeClass(class_one1).addClass(oldclass);
+                }
+
+            });
+        });
+    </script>
+
+
 </head>
 
 <body>
-    <div class="col-xl-12 bg-light border border-dark text-center rounded ">
+    <div id="div1" class="col-xl-12  border border-dark text-center rounded bg-light">
         <h3>Color Switch</h3>
 
-        <div class=' bg-primary border border-dark rounded text-left'>
+        <div id="div2" class='border border-dark rounded text-left bg-primary'>
             Alteration literature to or an sympathize mr imprudence. Of is ferrars subject as enjoyed or tedious cottage. Procuring as in resembled by in agreeable. Next long no gave mr eyes. Admiration advantages no he celebrated so pianoforte unreserved. herself
             forming charmed amiable. Him why feebly expect future now. Her extensive perceived may any sincerity extremity. Indeed add rather may pretty see. Old propriety delighted explained perceived otherwise objection saw ten her. Doubt merit sir
             the right these alone keeps.
@@ -24,7 +57,7 @@
         <br>
         <div class="card-columns">
 
-            <div class="card text-left border boorder-dark bg-warning ">
+            <div id="div3" class="card text-left rounded border boorder-dark bg-warning">
                 Alteration literature to or an sympathize mr imprudence. Of is ferrars subject as enjoyed or tedious cottage. Procuring as in resembled by in agreeable. Next long no gave mr eyes. Admiration advantages no he celebrated so pianoforte unreserved. herself
                 forming charmed amiable. Him why feebly expect future now. Her extensive perceived may any sincerity extremity. Indeed add rather may pretty see. Old propriety delighted explained perceived otherwise objection saw ten her. Doubt merit
                 sir the right these alone keeps. By sometimes intention smallness he northward. Consisted we otherwise arranging commanded discovery it explained. Does cold even song like two yet been. Literature interested announcing for terminated him
@@ -32,14 +65,14 @@
 
 
             </div>
-            <div class="border border-dark bg-danger rounded">
+            <div id="div4" class="border border-dark rounded bg-danger">
                 Alteration literature to or an sympathize mr imprudence. Of is ferrars subject as enjoyed or tedious cottage. Procuring as in resembled by in agreeable. Next long no gave mr eyes. Admiration advantages no he celebrated so pianoforte unreserved. herself
                 forming charmed amiable. Him why feebly expect future now. Her extensive perceived may any sincerity extremity. Indeed add rather may pretty see. Old propriety delighted explained perceived otherwise objection saw ten her. Doubt merit
                 sir the right these alone keeps. By sometimes intention smallness he northward. Consisted we otherwise arranging commanded discovery it explained. Does cold even song like two yet been. Literature interested announcing for terminated him
                 inquietude day shy.
 
             </div>
-            <div class="border border-dark bg-info rounded">
+            <div id="div5" class="border border-dark rounded bg-info">
                 Alteration literature to or an sympathize mr imprudence. Of is ferrars subject as enjoyed or tedious cottage. Procuring as in resembled by in agreeable. Next long no gave mr eyes. Admiration advantages no he celebrated so pianoforte unreserved. herself
                 forming charmed amiable. Him why feebly expect future now. Her extensive perceived may any sincerity extremity. Indeed add rather may pretty see. Old propriety delighted explained perceived otherwise objection saw ten her. Doubt merit
                 sir the right these alone keeps. By sometimes intention smallness he northward. Consisted we otherwise arranging commanded discovery it explained. Does cold even song like two yet been. Literature interested announcing for terminated him
@@ -48,7 +81,7 @@
             </div>
         </div>
         <br>
-        <div class="col-xl-12 bg-secondary border border-dark rounded text-left">
+        <div id="div5" class="col-xl-12 border border-dark rounded text-left bg-secondary">
             Alteration literature to or an sympathize mr imprudence. Of is ferrars subject as enjoyed or tedious cottage. Procuring as in resembled by in agreeable. Next long no gave mr eyes. Admiration advantages no he celebrated so pianoforte unreserved. herself
             forming charmed amiable. Old propriety delighted explained perceived otherwise objection saw ten her. By sometimes intention smallness he northward. Consisted we otherwise arranging commanded discovery it explained. Does cold even song like
             two yet been. Literature interested.
