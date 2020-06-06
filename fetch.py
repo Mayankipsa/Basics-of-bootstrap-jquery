@@ -20,12 +20,14 @@ def data_airbnb():
     print(id)
     t1=reqData[id]
     print(t1)
+    
     cluster = MongoClient(
         "mongodb+srv://anoop31:anoop31@cluster0-mpnrr.azure.mongodb.net/<dbname>?retryWrites=true&w=majority")
     db = cluster["sample_airbnb"]
     collection = db["listingsAndReviews"]
-    results = collection.find({"_id":"10006546"})
-    #results = collection.find({"id":"t1"})
+    #results = collection.find({"_id":"10006546"})
+    results = collection.find({id:t1})
+    
     for result in results:
         print(result["listing_url"])
         x = result["listing_url"]
