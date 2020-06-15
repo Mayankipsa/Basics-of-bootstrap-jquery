@@ -6,7 +6,7 @@ Created on Tue Jun  9 10:50:52 2020
 """
 import mongodb
 from flask import Flask, request, json, jsonify
-import config
+
 
 app = Flask(__name__)
 
@@ -38,9 +38,7 @@ def getreviewbyid(id):
         collection = mongodb.database()  # collection
         document = collection.find_one({"_id": id})
         return _corsify_actual_response(jsonify(document))
-    #collection=mongodb.database() # collection
-    #document=collection.find_one({"_id":id})
-    #return jsonify(document)
+    
 
 
 @app.route('/getreviews', methods=['GET'])
@@ -63,18 +61,15 @@ def insert_airbnb():
 @app.route('/update_airbnb', methods=['POST', 'OPTIONS'])
 def update_airbnb():
     reqData = request.json
-    k2 = config.id
+    k2 = '_id'
     v2 = reqData[k2]
-    k3 = config.name
+    k3 = 'name'
     v3 = reqData[k3]
-    #input_id=1245156
-    #upd_value="Anoop charming pentahouse"
-    #print(upd_value)
     conn = mongodb.database()
     rec_id2 = conn.update_one(
         {k2: v2}, {"$set": {k3: v3}})
     print("Data updated with id", rec_id2)
-    return config.update
+    return 'Update Successfully'
 
 
 if __name__ == "__main__":
