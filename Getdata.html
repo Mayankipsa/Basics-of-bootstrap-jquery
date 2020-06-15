@@ -19,25 +19,12 @@
                 })
                 //alert("input")
             var fetchData_airbnb = "https://127.0.0.1:9090/fetchData_airbnb";
-            $.ajax({
-                type: "POST", //rest Type
-                dataType: "json", //mispelled
-                data: JSON.stringify({
-                    Inp: inp
-                }),
-                url: fetchData_airbnb,
-                async: false,
-                contentType: "application/json; charset=utf-8",
-                success: function(response) {
-                    //window.location="http://mycity.parseapp.com/city/cgi-bin/test1.py"
-                    console.log(response.message);
-                    console.log(response.keys);
-                    console.log(response.data);
-
-                }
-
-            });
-            //$("#data").innerhtml = missing;
+            
+			$.get("http://127.0.0.1:9090/getreviewbyid/"+val, function(data, status){
+			alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+			$("#data").text(JSON.stringify(data));
+			});
+            
 
         }
     </script>
@@ -60,7 +47,7 @@
             <label for="ID"> <b>Document ID</b></label>
             <input type="number" id="num"><br><br>
             <button type="button" class="btn btn-info" onclick="showdata();">Submit</button>
-            <p id="data">Output</p>
+            <p id="data"> </p>
 
         </div>
     </div>
