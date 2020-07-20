@@ -5,10 +5,15 @@ Created on Tue Jun  9 10:50:52 2020
 @author: Anoop
 """
 import mongodb
-from flask import Flask, request, json, jsonify
+from flask import Flask, request, json, jsonify,render_template
+from flask_cors import CORS, cross_origin
 
 
 app = Flask(__name__)
+app.config['CORS_HEADERS'] = 'CONTENT-TYPE'
+cors = CORS(app, resources={
+            r"/api/*": {"origins": "localhost"}}, headers="Content-Type")
+
 
 
 def _build_cors_prelight_response():
@@ -48,28 +53,40 @@ def getreviews():
     return jsonify(documents)
 
 
+
+
 @app.route('/insert_airbnb', methods=['POST', 'OPTIONS'])
+@cross_origin(allow_headers=['Content-Type'])
 def insert_airbnb():
+    '''if request.method == "OPTIONS":  # CORS preflight
+            return _build_cors_prelight_response()
+    elif request.method == "POST":  # The actual request following the preflight'''
     review = request.json
     print("Inserting review:", review)
     collection = mongodb.database()
     addeddocument = collection.insert_one(review)
     print("Document added sucessfully:", addeddocument)
-    return True
-
+    #status={"status":"Record added sucessfully"}
+    return 
 
 @app.route('/update_airbnb', methods=['POST', 'OPTIONS'])
+@cross_origin(allow_headers=['Content-Type'])
 def update_airbnb():
-    reqData = request.json
-    k2 = '_id'
-    v2 = reqData[k2]
-    k3 = 'name'
-    v3 = reqData[k3]
-    conn = mongodb.database()
-    rec_id2 = conn.update_one(
-        {k2: v2}, {"$set": {k3: v3}})
-    print("Data updated with id", rec_id2)
-    return 'Update Successfully'
+    updatereview = request.json
+    #cvtdct = json.loads(updatereview)
+    print(updatereview)
+    updatereview1 = {"$set": updatereview}
+    #updatereview1 = {"$set": {"_id": "1", "bed_type": "2", "listing_url": "2"}}
+    #print(updatereview1)
+    y=updatereview["_id"]
+    print(y)
+    query = {"_id":y }
+    #print(query)
+    print("Updated Review:", updatereview)
+    collection = mongodb.database()
+    updatereview = collection.update_one(query, updatereview1)
+    #print("Data updated with id", updatereview)
+    return 
 
 
 if __name__ == "__main__":
